@@ -1,0 +1,2 @@
+email:dawn_password:your_appid #appid需要从浏览器捞
+email:dawn_password #随机生成appid,可能会封号

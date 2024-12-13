@@ -1,0 +1,74 @@
+# ===========================================
+#        应用配置
+# ===========================================
+# 此配置文件控制应用程序的核心行为和设置，
+# 包括线程、电子邮件和验证码服务。
+
+# ==================
+# 核心设置
+# ==================
+# 控制基本功能的必要应用程序参数
+
+threads: 30                    # 工作线程数，用于并发操作
+                              # 最小值: 1，推荐值: 根据系统资源选择10-50
+
+keepalive_interval: 120       # 保持连接信号的频率，单位秒
+                             # 控制连接健康监控
+
+referral_codes:              # 推荐码列表，用于追踪和奖励
+  - "agsyxv8u"                       # 按需添加多个代码，每行一个
+
+# ======================
+# 重定向配置
+# ======================
+# 邮件重定向和代理设置，用于消息处理
+
+redirect_settings:
+  enabled: false             # 邮件重定向功能的主开关
+  email: "test@gmail.com"    # 主要重定向邮箱地址
+  password: "password"       # 身份验证凭据（安全存储！）
+  imap_server: "imap.gmail.com"  # IMAP服务器用于邮件检索
+  use_proxy: true           # 启用代理支持，以增强隐私
+
+# ====================
+# 验证码集成
+# ====================
+# 自动化验证码解决服务的设置
+
+captcha_module: 2captcha     # 支持的服务：
+                            # - '2captcha': 主服务
+                            # - 'anticaptcha': 替代服务
+
+two_captcha_api_key: "xyzzzzzzzzzzz"     # 2captcha服务的API认证密钥
+anti_captcha_api_key: ""    # anticaptcha服务的API认证密钥
+
+# ======================
+# 启动配置
+# ======================
+# 控制应用程序初始化时间
+
+delay_before_start:
+  min: 2                    # 启动延迟的最小值，单位秒
+  max: 3                    # 启动延迟的最大值，单位秒
+                           # 在最小值和最大值之间随机化
+
+# ==============================
+# 电子邮件提供商配置
+# ==============================
+# 主要电子邮件提供商的IMAP服务器设置列表
+
+imap_settings:
+  # 全球邮件服务
+  gmail.com: imap.gmail.com          # Google邮箱 - 需要SSL
+  yahoo.com: imap.mail.yahoo.com     # Yahoo邮箱 - 需要SSL
+  icloud.com: imap.mail.me.com       # Apple iCloud - 可能需要双重认证
+
+  # 地区性邮件服务
+  mail.ru: imap.mail.ru              # Mail.ru - 在CIS地区流行
+
+  # 欧洲服务
+  gmx.com: imap.gmx.com              # GMX邮箱 - 国际
+  gmx.net: imap.gmx.net              # GMX德国 - 主
+  gmx.de: imap.gmx.net               # GMX德国 - 替代
+  onet.pl: imap.poczta.onet.pl       # Onet - 波兰服务
+  onet.com.pl: imap.poczta.onet.pl   # Onet - 替代域名
