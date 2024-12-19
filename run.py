@@ -122,6 +122,17 @@ async def run() -> None:
             input("\n\n按 Enter 继续...")
 
 
+# usage:
+# screen -S dawn
+# python run.py
+# ctrl A + D
+
+# attach screen
+# screen -r dawn
+
+# log
+# tail -f logs/logs.log
+
 if __name__ == "__main__":
     if sys.platform == "win32":
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
