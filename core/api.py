@@ -12,7 +12,7 @@ from models import Account
 from .exceptions.base import APIError, SessionRateLimited, ServerError
 from loader import captcha_solver, config
 
-dawn_version = "1.1.1"
+dawn_version = "1.1.2"
 
 
 class DawnExtensionAPI:
@@ -252,7 +252,9 @@ class DawnExtensionAPI:
             "username": self.account_data.email,
             "extensionid": "fpdkjdnhkakefebpekbdhillbhonfjjp",
             "numberoftabs": 0,
-            "_v": dawn_version,
+            "_v": {
+                "version": dawn_version,
+            },
         }
 
         params = {
@@ -314,17 +316,23 @@ class DawnExtensionAPI:
         headers["content-type"] = "application/json"
         del headers["Berear"]
 
+        from random import randint
+        if not delay:
+            delay = randint(5, 20)
+
         for task in tasks:
             json_data = {
                 task: task,
             }
-
+            params = {
+                'appid': self.account_data.app_id,
+            }
             await self.send_request(
                 method="/v1/profile/update",
                 json_data=json_data,
                 headers=headers,
+                params=params,
             )
-
             await asyncio.sleep(delay)
 
     async def verify_session(self) -> tuple[bool, str]:
@@ -351,7 +359,9 @@ class DawnExtensionAPI:
             "username": self.account_data.email,
             "password": self.account_data.password,
             "logindata": {
-                "_v": dawn_version,
+                "_v": {
+                    "version": dawn_version,
+                },
                 "datetime": formatted_datetime_str,
             },
             "puzzle_id": puzzle_id,

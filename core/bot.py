@@ -476,6 +476,13 @@ class Bot(DawnExtensionAPI):
             await Accounts.create_account(email=self.account_data.email,
                                           headers=self.session.headers,
                                           appid=self.account_data.app_id)
+            if self.account_data.complete_task_after_login:
+                try:
+                    await self.complete_tasks(delay=None)
+                except Exception as e:
+                    logger.error(
+                        f"Account: {self.account_data.email} | Failed to complete social tasks : {error}"
+                    )
             return True
 
         except APIError as error:

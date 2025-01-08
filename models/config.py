@@ -17,6 +17,7 @@ class Account(BaseModel):
     imap_server: str = "imap.gmail.com"
     proxy: Proxy
     app_id: str
+    complete_task_after_login: bool = True
 
 
 class RedirectSettings(BaseModel):
