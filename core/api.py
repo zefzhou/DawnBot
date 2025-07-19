@@ -16,7 +16,7 @@ dawn_version = "1.2.1"
 
 
 class DawnExtensionAPI:
-    API_URL = "https://www.aeropres.in/chromeapi/dawn"
+    API_URL = "https://ext-api.dawninternet.com/chromeapi/dawn"
 
     def __init__(self, account: Account):
         self.account_data = account
