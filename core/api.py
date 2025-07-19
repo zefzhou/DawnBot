@@ -12,7 +12,7 @@ from models import Account
 from .exceptions.base import APIError, SessionRateLimited, ServerError
 from loader import captcha_solver, config
 
-dawn_version = "1.1.2"
+dawn_version = "1.2.1"
 
 
 class DawnExtensionAPI:
