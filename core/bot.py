@@ -337,6 +337,12 @@ class Bot(DawnExtensionAPI):
             logger.info(
                 f"Account: {self.account_data.email} | appid : {self.account_data.app_id}"
             )
+            if self.account_data.email in ['LesleyWilfred110520@gmail.com']:
+                logger.warning(
+                    f"Account: {self.account_data.email} | appid : {self.account_data.app_id} Skip"
+                )
+                return
+
             db_account_data = await Accounts.get_account(
                 email=self.account_data.email)
             if db_account_data and db_account_data.session_blocked_until:
